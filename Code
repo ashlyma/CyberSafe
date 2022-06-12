@@ -1,0 +1,336 @@
+hidden=[".config"]
+
+# hosting is currently hardcoded for this language
+# [hosting]
+# route = "/"
+# directory= "/"
+
+[nix]
+channel = "stable-21_11"
+
+[languages.html]
+pattern = "**/*.html"
+  [languages.html.languageServer]
+  start = ["vscode-html-language-server", "--stdio"]
+  [languages.html.languageServer.initializationOptions]
+  provideFormatter = true
+  [languages.html.languageServer.configuration.html]
+  customData = [ ]
+  autoCreateQuotes = true
+  autoClosingTags = true
+  mirrorCursorOnMatchingTag = false
+  
+    [languages.html.languageServer.configuration.html.completion]
+    attributeDefaultValue = "doublequotes"
+  
+    [languages.html.languageServer.configuration.html.format]
+    enable = true
+    wrapLineLength = 120
+    unformatted = "wbr"
+    contentUnformatted = "pre,code,textarea"
+    indentInnerHtml = false
+    preserveNewLines = true
+    indentHandlebars = false
+    endWithNewline = false
+    extraLiners = "head, body, /html"
+    wrapAttributes = "auto"
+    templating = false
+    unformattedContentDelimiter = ""
+  
+    [languages.html.languageServer.configuration.html.suggest]
+    html5 = true
+  
+    [languages.html.languageServer.configuration.html.validate]
+    scripts = true
+    styles = true
+  
+    [languages.html.languageServer.configuration.html.hover]
+    documentation = true
+    references = true
+  
+    [languages.html.languageServer.configuration.html.trace]
+    server = "off"
+
+[languages.javascript]
+pattern = "**/{*.js,*.jsx,*.ts,*.tsx,*.mjs,*.cjs}"
+  [languages.javascript.languageServer]
+  start = ["typescript-language-server", "--stdio"]
+
+# TODO autocomplete relies on snippet support, which we don't advertise to LSP servers.
+# For now CSS autocomplete will use built-in codemirror, which is not perfect but good enough
+[languages.css]
+pattern = "**/{*.less,*.scss,*.css}"
+  [languages.css.languageServer]
+    start = ["vscode-css-language-server", "--stdio"]
+    [languages.css.languageServer.configuration.css]
+      customData = [ ]
+      validate = true
+
+      [languages.css.languageServer.configuration.css.completion]
+      triggerPropertyValueCompletion = true
+      completePropertyWithSemicolon = true
+    
+      [languages.css.languageServer.configuration.css.hover]
+      documentation = true
+      references = true
+    
+      [languages.css.languageServer.configuration.css.lint]
+      # Configure linting
+      # ignore = don't show any warning or error
+      # warning = show yellow underline
+      # error = show red underline
+      argumentsInColorFunction = "error" # Invalid number of parameters
+      boxModel = "ignore" # Do not use width or height when using padding or border
+      compatibleVendorPrefixes = "ignore"  # When using a vendor-specific prefix make sure to also include all other vendor-specific properties"
+      duplicateProperties = "warning" # Do not use duplicate style definitions
+      emptyRules = "warning" # Do not use empty rulesets
+      float = "ignore" # Avoid using 'float'. Floats lead to fragile CSS that is easy to break if one aspect of the layout changes.
+      fontFaceProperties = "warning" # @font-face rule must define 'src' and 'font-family' properties 
+      hexColorLength = "error" # Hex colors must consist of three, four, six or eight hex numbers
+      idSelector = "ignore" # Selectors should not contain IDs because these rules are too tightly coupled with the HTML.
+      ieHack = "ignore" # IE hacks are only necessary when supporting IE7 and older
+      important = "ignore" # Avoid using !important. It is an indication that the specificity of the entire CSS has gotten out of control and needs to be refactored.
+      importStatement = "ignore" # Import statements do not load in parallel
+      propertyIgnoredDueToDisplay = "warning" # Property is ignored due to the display
+      universalSelector = "ignore" # The universal selector (*) is known to be slow
+      unknownAtRules = "warning" # Unknown at-rule
+      unknownProperties = "warning" # Unknown property.
+      validProperties = [ ] # add some properties that the linter doesn't know about
+      unknownVendorSpecificProperties = "ignore" # Unknown vendor specific property.
+      vendorPrefix = "warning" # When using a vendor-specific prefix also include the standard property
+      zeroUnits = "ignore" # No unit for zero needed
+    
+      [languages.css.languageServer.configuration.css.trace]
+      server = "off"
+    
+    [languages.css.languageServer.configuration.scss]
+    validate = true
+    
+      [languages.css.languageServer.configuration.scss.completion]
+      triggerPropertyValueCompletion = true
+      completePropertyWithSemicolon = true
+    
+      [languages.css.languageServer.configuration.scss.hover]
+      documentation = true
+      references = true
+    
+      [languages.css.languageServer.configuration.scss.lint]
+      # Configure linting
+      # ignore = don't show any warning or error
+      # warning = show yellow underline
+      # error = show red underline
+      argumentsInColorFunction = "error" # Invalid number of parameters
+      boxModel = "ignore" # Do not use width or height when using padding or border
+      compatibleVendorPrefixes = "ignore"  # When using a vendor-specific prefix make sure to also include all other vendor-specific properties"
+      duplicateProperties = "warning" # Do not use duplicate style definitions
+      emptyRules = "warning" # Do not use empty rulesets
+      float = "ignore" # Avoid using 'float'. Floats lead to fragile CSS that is easy to break if one aspect of the layout changes.
+      fontFaceProperties = "warning" # @font-face rule must define 'src' and 'font-family' properties 
+      hexColorLength = "error" # Hex colors must consist of three, four, six or eight hex numbers
+      idSelector = "ignore" # Selectors should not contain IDs because these rules are too tightly coupled with the HTML.
+      ieHack = "ignore" # IE hacks are only necessary when supporting IE7 and older
+      important = "ignore" # Avoid using !important. It is an indication that the specificity of the entire CSS has gotten out of control and needs to be refactored.
+      importStatement = "ignore" # Import statements do not load in parallel
+      propertyIgnoredDueToDisplay = "warning" # Property is ignored due to the display
+      universalSelector = "ignore" # The universal selector (*) is known to be slow
+      unknownAtRules = "warning" # Unknown at-rule
+      unknownProperties = "warning" # Unknown property.
+      validProperties = [ ] # add some properties that the linter doesn't know about
+      unknownVendorSpecificProperties = "ignore" # Unknown vendor specific property.
+      vendorPrefix = "warning" # When using a vendor-specific prefix also include the standard property
+      zeroUnits = "ignore" # No unit for zero needed"
+    
+    [languages.css.languageServer.configuration.less]
+    validate = true
+    
+      [languages.css.languageServer.configuration.less.completion]
+      triggerPropertyValueCompletion = true
+      completePropertyWithSemicolon = true
+    
+      [languages.css.languageServer.configuration.less.hover]
+      documentation = true
+      references = true
+    
+      [languages.css.languageServer.configuration.less.lint]
+      # Configure linting
+      # ignore = don't show any warning or error
+      # warning = show yellow underline
+      # error = show red underline
+      argumentsInColorFunction = "error" # Invalid number of parameters
+      boxModel = "ignore" # Do not use width or height when using padding or border
+      compatibleVendorPrefixes = "ignore"  # When using a vendor-specific prefix make sure to also include all other vendor-specific properties"
+      duplicateProperties = "warning" # Do not use duplicate style definitions
+      emptyRules = "warning" # Do not use empty rulesets
+      float = "ignore" # Avoid using 'float'. Floats lead to fragile CSS that is easy to break if one aspect of the layout changes.
+      fontFaceProperties = "warning" # @font-face rule must define 'src' and 'font-family' properties 
+      hexColorLength = "error" # Hex colors must consist of three, four, six or eight hex numbers
+      idSelector = "ignore" # Selectors should not contain IDs because these rules are too tightly coupled with the HTML.
+      ieHack = "ignore" # IE hacks are only necessary when supporting IE7 and older
+      important = "ignore" # Avoid using !important. It is an indication that the specificity of the entire CSS has gotten out of control and needs to be refactored.
+      importStatement = "ignore" # Import statements do not load in parallel
+      propertyIgnoredDueToDisplay = "warning" # Property is ignored due to the display
+      universalSelector = "ignore" # The universal selector (*) is known to be slow
+      unknownAtRules = "warning" # Unknown at-rule
+      unknownProperties = "warning" # Unknown property.
+      validProperties = [ ] # add some properties that the linter doesn't know about
+      unknownVendorSpecificProperties = "ignore" # Unknown vendor specific property.
+      vendorPrefix = "warning" # When using a vendor-specific prefix also include the standard property
+      zeroUnits = "ignore" # No unit for zero needed"
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Home Page</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  
+</head>
+
+<body>
+  
+  <style> 
+div {  
+border: 0px solid red;  
+}  
+img{  
+height: 250px;  
+width: 350px;  
+}  
+#center {  
+text-align: center;  
+}  
+
+    
+  </style>
+  
+  <header> 
+
+    <img class= "logo" src="images/logo.PNG" alt= "Image Of Home Page"/> 
+  <nav> 
+  <ul class= "nav"> 
+<li><a href="https://hydra-hacks-ii.christinalee16.repl.co/">home page</a></li>
+<li><a href="https://www.texasattorneygeneral.gov/consumer-protection/common-scams">types of scams</a></li>
+<li><a href="https://resources.ashly6094.repl.co/">resources</a></li>
+    
+  </ul>
+  </nav>
+
+<a href="https://studio.code.org/projects/applab/XlI7hULfuwC9XD7SLJBUkYp0AH5JTNsLnu5wPpIXuiU"><button>Take Quiz</button></a>
+    
+    
+  </header>
+  
+<div id ="center">  
+<img src="sca.png">
+
+  <script src="script.js"></script>
+
+    <p>Does this image look familiar? This image represents phishing:<b><i>”a scam where thieves attempt to steal personal or financial account information by sending deceptive electronic messages that trick unsuspecting consumers into disclosing personal information”.</b></i>It has been found that “fraud losses increased more than 70 percent over 2020”. And There were approximate <b>“2.8 Million </b>Fraud Reports from Consumers in 2021”. One of these people could be you this year! Emails and phone calls are two of many ways scammers can get you! Protect yourself, family, and friends by acknowledging how to identify and protect yourself against scammers. Here are some tips to help you stay safe online, with a little quiz in the end. </p>
+  
+  <h1>How to acknowledge you are being scammed.</h1>
+  
+    <p> Before you sign in to any websites or send out information, make sure you know it is reliable. If scammers obtain access to your personal information, they will use it for their own benefit. Here are some words to keep in mind when you get a text message or an email: "guaranteed, opportunity, risk-free and fortune." Most of the time scammers tend to use well known companies in order for you to gain their trust. They also tend to use many methods to try to get YOU to type your personal information in their system. Keep in mind, if what they are telling you coincides with your current status. Here are some examples of phishing emails </p>
+
+  <img src = "https://images.tech.co/wp-content/uploads/2019/12/17151139/netflix-email-phishing-scam.png" alt= "Scam image examle"/>
+
+  <img src = "https://upload.wikimedia.org/wikipedia/commons/d/d0/PhishingTrustedBank.png" alt = "Scam image examle"/>
+  
+<h1>How do I prevent or what do I do if I know I’m being scammed?</h1>
+
+  <p>One of the most simple ways after identifying a spam email is to report it as spam. That way you won’t receive more scam emails regarding that source. Just because you do this once, it does not mean it won’t happen again. That’s why you always need to be aware and on the lookout for more. You can always prevent scam messages and calls by using an app that can identify them. That way they can prevent it from getting to you. A couple apps you could use can be <b> Hiya, RoboKiller and Truecaller.</b> Although those apps can help, it would be easier to register your number on the nationally Do Not Call List. It is free and simple, you just need to call <b> 1-888-382-1222 (voice) or 1-866-290-4236 (TTY).</b> With the number you want the scammers to stop calling or texting you. For more information, click on this <a href= "https://www.fcc.gov/consumers/guides/stop-unwanted-robocalls-and-texts"a>Link</a>. If you know you are being tricked right now you should stop talking to that person and block them immediately. That’s the case if you haven’t shared any important information. But if you did share some important information you should call the following numbers:<b> 1-877-382-4357 (TTY: 1-866-653-4261).</b> For more information click on this <a href = "https://www.usa.gov/common-scams-frauds#:~:text=But%20your%20report%20can%20help,agency%20that%20collects%20scam%20complaints">Link</a>.
+</p>
+
+  <h1> Take our quiz now to test your knowledge!</h1>
+  <p>Hint: Click on the right upper corner of the website!</p>
+  
+</body>
+
+</html>
+{ pkgs }: {
+  deps = [
+    pkgs.nodePackages.vscode-langservers-extracted
+    pkgs.nodePackages.typescript-language-server
+  ];
+}
+
+
+* {
+  padding: 0;
+  font-family: arial;
+  box-sizing; border-box
+
+}
+
+header {
+  background: rgb(15, 82, 186);
+  height: 100px;
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  
+}
+
+.logo {
+   height: 45px;
+  margin: 10px; 
+}
+.nav {
+  list-style: none;
+}
+
+.nav li {
+  display: inline-block;
+  padding: 0 20px;
+  
+}
+
+.nav li a {
+  text-decoration: none;
+  text-transform: uppercase; 
+  transition: all 0.3 ease 0s;
+  color: white
+}
+
+.nav li a:hover {
+  color: lightsteelblue;
+}
+
+button {
+  background-color: lightblue;
+  color: white;
+  font-size: 18px; 
+  margin: 50px;
+  border: none;
+  padding: 9px 25px;
+  border-radius: 50px;
+  transition: all 0.3s ease 0s; 
+}
+
+button:hover {
+  background-color: lightblue; 
+  color: darkblue;
+}
+
+.background { 
+display: flex;
+  align-items: center; 
+  justify-content: center;
+  background-position: center;
+
+    }
+
+body{
+  text-align: center;
+  font-family: arial;
+  font-size: 20px;
+  
+}
+
+p {
+  margin: 50px;
+  padding: 0 70px;
+}
+
+ 
