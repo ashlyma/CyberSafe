@@ -29,3 +29,15 @@ We learnt how to efficiently collaborate with other developers as well as how to
 
 What's next for CyberSafe
 Building a mobile app for the project and adding more features (account creation, crowd-sourcing, etc.) We also want to create a larger database and implement back-end development.
+
+Sources used: 
+https://www.ftc.gov/news-events/news/press-releases/2022/02/new-data-shows-ftc-received-28-million-fraud-reports-consumers-2021-0
+
+https://www.ag.state.mn.us/consumer/publications/ComputerMalwareandPhishingSchemes.asp#:~:text=%E2%80%9CPhishing%E2%80%9D%20is%20a%20scam%20where,consumers%20into%20disclosing%20personal%20information.
+
+https://scambusters.org/scamwords.html
+
+https://www.fcc.gov/consumers/guides/stop-unwanted-robocalls-and-texts
+
+https://consumer.ftc.gov/articles/how-recognize-and-avoid-phishing-scams
+
